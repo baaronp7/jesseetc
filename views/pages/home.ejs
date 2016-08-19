@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+    <% include ../partials/header %>
+
+    <div id="postsList">
+        <% for(var p in postsJSON) { %>
+            <div id="<%- postsJSON[p].id %>" class="postlet">
+                <div class="title">
+                    <h2><%- postsJSON[p].title.rendered %></h2>
+                </div>
+                <div class="date">
+                    <%- postsJSON[p].date %>
+                </div>
+                <div class="featuredImg" data-imgid="<%- postsJSON[p].featured_media %>"></div>
+                <div class="excerpt">
+                        <%- postsJSON[p].excerpt.rendered %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <% include ../partials/footer %>
+</body>
+</html>
