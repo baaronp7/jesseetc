@@ -41,6 +41,10 @@ $(document).ready(function () {
         $(this).text(date.toLocaleTimeString("en-us", options));
     });
 
+    $('a.more-link').each(function() {
+        $(this).attr('href', '/getPost/?id='+$('a.more-link').parent().parent().parent().attr('id'));
+    });
+
     $(window).resize(function(){
         $(".featuredImg").each(function() {
             var margin = $(".featuredImg>img").height()/4;

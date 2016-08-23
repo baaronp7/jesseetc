@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+    <% include ../partials/header %>
+    
+    <script>console.log('<%- postJSON.id %>');</script>
+    <div id="posts">
+        <div id="<%- postJSON.id %>" class="postlet">
+            <div class="title">
+                <h2><%- postJSON.title.rendered %></h2>
+            </div>
+            <div class="date">
+                <%- postJSON.date %>
+            </div>
+            <div class="featuredImg" data-imgid="<%- postJSON.featured_media %>"></div>
+            <div class="content">
+                    <%- postJSON.content.rendered %>
+            </div>
+        </div>
+    </div>
+
+    <% include ../partials/footer %>
+</body>
+</html>
