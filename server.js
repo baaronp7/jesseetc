@@ -19,6 +19,7 @@ app.get('/', function (req, res) {
         //console.log(postsJSON);
         res.render('pages/home', {
             cssFiles: ['/css/home.css'],
+            page: "home",
             postsJSON: postsJSON
         });
     });
@@ -55,19 +56,22 @@ app.get('/getMedia', function (req, res) {
 
 app.get('/listen', function (req, res) {
     res.render('pages/listen', {
-        cssFiles: ['/css/listen.css']
+        cssFiles: ['/css/listen.css'],
+        page: "listen"
     });
 });
 
 app.get('/tour', function (req, res) {
     res.render('pages/tour', {
-        cssFiles: ['/css/tour.css']
+        cssFiles: ['/css/tour.css'],
+        page: "tour"
     });
 });
 
 app.get('/contact', function (req, res) {
     res.render('pages/contact', {
-        cssFiles: ['/css/contact.css']
+        cssFiles: ['/css/contact.css'],
+        page: "contact"
     });
 });
 
