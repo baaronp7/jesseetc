@@ -7,6 +7,8 @@ var app = express();
 
 var wpAPI = require('./wpAPI');
 
+var host = "www.jesseetcetc.com";
+
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
@@ -15,7 +17,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(partial());
 
 app.get('/', function (req, res) {
-    wpAPI.getPosts('www.jesseetcetc.com', function (postsJSON) {
+    wpAPI.getPosts(host, function (postsJSON) {
         //console.log(postsJSON);
         res.render('pages/home', {
             cssFiles: ['/css/home.css'],
@@ -28,7 +30,7 @@ app.get('/', function (req, res) {
 app.get('/getPost', function (req, res) {
     var id = req.query.id;
     if(id != undefined) {
-        wpAPI.getPost('www.jesseetcetc.com', id, function (postJSON) {
+        wpAPI.getPost(host, id, function (postJSON) {
             res.render('pages/post', {
                 cssFiles: ['/css/post.css'],
                 postJSON: postJSON
@@ -43,7 +45,7 @@ app.get('/getPost', function (req, res) {
 app.get('/getMedia', function (req, res) {
     var id = req.query.id;
     if(id != undefined) {
-        wpAPI.getMedia('www.jesseetcetc.com', id, function (json) {
+        wpAPI.getMedia(host, id, function (json) {
             res.render('pages/json', {
                 json: json
             });                                                                
@@ -62,9 +64,12 @@ app.get('/listen', function (req, res) {
 });
 
 app.get('/tour', function (req, res) {
-    res.render('pages/tour', {
-        cssFiles: ['/css/tour.css'],
-        page: "tour"
+    wpAPI.getPage(host, "34", function (tourJSON) {
+        res.render('pages/tour', {
+            cssFiles: ['/css/tour.css'],
+            page: "tour",
+            tourJSON: tourJSON
+        });                                                        
     });
 });
 

@@ -17,13 +17,18 @@ $(document).ready(function () {
 
     $("div.featuredImg").each(function() {
         var url = "/getMedia?id="+$(this).data("imgid");
-        console.log(url);
+        var img = $(this);
         $.ajax({
             url: url, dataType: "json",
             success: function(result){
-                $(".featuredImg").html(
-                    '<img src="'+result.media_details.sizes.full.source_url+'" class="img-responsive" />'
-                );
+                try {
+                    $(img).html(
+                        '<img src="'+result.media_details.sizes.full.source_url+'" class="img-responsive" />'
+                    );
+                }
+                catch(e) {
+                    $(img).height(0);
+                }
             }
         }).fail(function() {
             alert("error");

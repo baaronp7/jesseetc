@@ -53,6 +53,30 @@ exports.getPost = function (host, id, callback) {
     });
 };
 
+exports.getPage = function (host, id, callback) {
+    var postJSON = null;
+    var options = {
+        host: host,
+        path: '/wp-json/wp/v2/pages/' + id
+    };
+
+    var req = http.get(options, function (res) {
+
+        var bodyChunks = [];
+        res.on('data', function (chunk) {
+            bodyChunks.push(chunk);
+        }).on('end', function () {
+            tourJSON = JSON.parse(Buffer.concat(bodyChunks));
+            callback(tourJSON);
+        })
+
+    });
+
+    req.on('error', function (e) {
+        console.log('ERROR: ' + e.message);
+    });
+};
+
 exports.getAuthor = function (host, id, callback) {
     var authorJSON = null;
 
